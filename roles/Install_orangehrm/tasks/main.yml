@@ -1,6 +1,6 @@
 - subversion:
     repo: https://repos.orangehrm.com/enterprise/{{ Repository }}
-    dest: /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-phantom.orangehrm.com
+    dest: /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-{{ inventory_hostname }}.orangehrm.com
     username: "{{ svn_usr }}"
     password: "{{ svn_password }}"
     update: yes
@@ -9,19 +9,19 @@
 #  shell: cd /var/www/html/OHRMStandalone/UAT/ansibletest-uat-phantom.orangehrm.com && bash fix_permissions.sh
 
 - name: install the system
-  shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-phantom.orangehrm.com/installer && sudo bash cli_install.sh -h db -p 3306 -d ent_db{{ app_name }} -a admin -ap {{ adminpwd }} -u root -up {{ PHANTOM_MYSQL_PWD }} -e n -c n -sm y -so n -sp y -lc y -oc US,LK -cn
+  shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-{{ inventory_hostname }}.orangehrm.com/installer && sudo bash cli_install.sh -h db -p 3306 -d ent_db{{ app_name }} -a admin -ap {{ adminpwd }} -u root -up {{ PHANTOM_MYSQL_PWD }} -e n -c n -sm y -so n -sp y -lc y -oc US,LK -cn
 
 #- name: create test database
 #  shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-phantom.orangehrm.com && sudo php devTools/general/create-test-db.php {{ PHANTOM_MYSQL_PWD }}
 
 - name: clear cache
-  shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-phantom.orangehrm.com/symfony && php symfony cc
+  shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-{{ inventory_hostname }}.orangehrm.com/symfony && php symfony cc
 
 - name: clear cache
-  shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-phantom.orangehrm.com/symfony/web/client && npm install && bower install --allow-root && gulp inject
+  shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-{{ inventory_hostname }}.orangehrm.com/symfony/web/client && npm install && bower install --allow-root && gulp inject
 
 - name: clear cache
-  shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-phantom.orangehrm.com/devTools/load && bash load.sh {{ PHANTOM_MYSQL_PWD }}
+  shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-{{ inventory_hostname }}.orangehrm.com/devTools/load && bash load.sh {{ PHANTOM_MYSQL_PWD }}
 
 #- vars_prompt:
 #    - name: "Repository"

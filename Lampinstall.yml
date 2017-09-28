@@ -1,6 +1,6 @@
 - hosts:
-    - Phantom_server
-    - Iris_server
+    - phantom
+    - iris
   roles:
     - Install_apache
 #    - Install_mysql
