@@ -18,12 +18,10 @@
   shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-phantom.orangehrm.com/symfony && php symfony cc
 
 - name: clear cache
-  shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-phantom.orangehrm.com/symfony && php symfony cc
+  shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-phantom.orangehrm.com/symfony/web/client && npm install && bower install --allow-root && gulp inject
 
 - name: clear cache
-  shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-phantom.orangehrm.com/symfony/web/client && php npm install && bower install --allow-root && gulp inject
-
-
+  shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-phantom.orangehrm.com/devTools/load && bash load.sh {{ PHANTOM_MYSQL_PWD }}
 
 #- vars_prompt:
 #    - name: "Repository"
