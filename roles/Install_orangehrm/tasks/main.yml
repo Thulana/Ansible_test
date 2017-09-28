@@ -17,15 +17,15 @@
 - name: test application
   shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy }}-phantom.orangehrm.com/symfony && phpunit
 
-- vars_prompt:
-    - name: "Repository"
-      prompt: "Repository url :"
-    - name: "Deploy"
-      prompt: "Deploy Environment :"
-    - name: "app_name"
-      prompt: "Deploy name :"
-    - name: "adminpwd"
-      prompt: "Admin password :"
+#- vars_prompt:
+#    - name: "Repository"
+#      prompt: "Repository url :"
+#    - name: "Deploy"
+#      prompt: "Deploy Environment :"
+#    - name: "app_name"
+#      prompt: "Deploy name :"
+#    - name: "adminpwd"
+#      prompt: "Admin password :"
 
 
 
