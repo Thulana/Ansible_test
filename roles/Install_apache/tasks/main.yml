@@ -1,0 +1,7 @@
+---
+- name: 1. install Apache
+  yum: name=httpd state=present
+
+- name: 3. start Apache
+  service: name=httpd state=started enabled=yes
+
