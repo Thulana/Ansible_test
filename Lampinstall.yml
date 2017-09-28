@@ -1,4 +1,4 @@
-- hosts: phantom
+- hosts: Phantom_server
   roles:
     - Install_apache
 #    - Install_mysql
