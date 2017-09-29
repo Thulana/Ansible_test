@@ -17,10 +17,10 @@
 - name: clear cache
   shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-{{ inventory_hostname }}.orangehrm.com/symfony && php symfony cc
 
-- name: clear cache
+- name: npm install
   shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-{{ inventory_hostname }}.orangehrm.com/symfony/web/client && npm install && bower install --allow-root && gulp inject
 
-- name: clear cache
+- name: Test data generation
   shell: cd /var/www/html/OHRMStandalone/{{ Deploy }}/{{ app_name }}-{{ Deploy | lower }}-{{ inventory_hostname }}.orangehrm.com/devTools/load && bash load.sh {{ PHANTOM_MYSQL_PWD }}
 
 #- vars_prompt:
