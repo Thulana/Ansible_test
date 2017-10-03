@@ -8,7 +8,7 @@
     attributes:
       description: An LDAP administrator
       userPassword: "admin"
-      sn: {{ surname }}
+      sn: "{{ surname }}"
     server_uri: ldap://10.5.0.22
     bind_dn: cn=admin,dc=orangehrm,dc=com
     bind_pw: "admin"
