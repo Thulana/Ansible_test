@@ -1,6 +1,6 @@
 #
 - name: add a user
-  ldap_attr:
+  ldap_entry:
     dn: uid={{ user_name }},ou=users,dc=orangehrm,dc=com
     objectClass:
       - inetOrgPerson
