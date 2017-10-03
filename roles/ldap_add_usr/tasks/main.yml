@@ -1,0 +1,15 @@
+
+- name: add a user
+  ldap_entry:
+    dn: uid={{ user_name }},ou=users,dc=orangehrm,dc=com
+    objectClass:
+      - posixAccount
+    attributes:
+      description: An LDAP administrator
+      userPassword: "admin"
+    server_uri: ldap://10.5.0.22
+    bind_dn: cn=admin,dc=orangehrm,dc=com
+    bind_pw: "admin"
+
+
+
