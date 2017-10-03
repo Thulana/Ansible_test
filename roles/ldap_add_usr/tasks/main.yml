@@ -1,6 +1,6 @@
-
+#
 - name: add a user
-  ldap_entry:
+  ldap_attr:
     dn: uid={{ user_name }},ou=users,dc=orangehrm,dc=com
     objectClass:
       - inetOrgPerson
@@ -8,9 +8,17 @@
     attributes:
       description: An LDAP administrator
       userPassword: "admin"
+      sn: {{ surname }}
     server_uri: ldap://10.5.0.22
     bind_dn: cn=admin,dc=orangehrm,dc=com
     bind_pw: "admin"
 
-
-
+#- name: add a user
+#  ldap_attr:
+#    dn: uid={{ user_name }},ou=people,dc=example,dc=com
+#    name: shadowExpire
+#    values: ""
+#    state: exact
+#    server_uri: ldap://localhost/
+#    bind_dn: cn=admin,dc=example,dc=com
+#    bind_pw: password
