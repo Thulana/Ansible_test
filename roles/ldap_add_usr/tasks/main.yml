@@ -4,7 +4,6 @@
     dn: uid={{ user_name }},ou=users,dc=orangehrm,dc=com
     objectClass:
       - inetOrgPerson
-      - posixAccount
     attributes:
       description: An LDAP administrator
       userPassword: "admin"
