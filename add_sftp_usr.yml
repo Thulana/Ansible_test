@@ -1,6 +1,7 @@
 ---
 - name: test-playbook | Test sftp-server role
   hosts: phantom
+  sudo: yes
   vars:
     - sftp_users:
       - name: peter
