@@ -1,8 +1,8 @@
 ---
-- name: SFTP-Server | Create sftp user group
-  group:
-    name: "{{ sftp_group_name }}"
-    state: present
+#- name: SFTP-Server | Create sftp user group
+#  group:
+#    name: "{{ sftp_group_name }}"
+#    state: present
 
 # Necessary for chrooting of SFTP users.
 - name: SFTP-Server | Alter sftp subsystem entry
