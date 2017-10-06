@@ -51,7 +51,7 @@
 
 - mail:
     host: smtp.gmail.com
-    port: 587
+    port: 465
     username: thulana@orangehrm.us.com
     password: "{{ email_password }}"
     to: "{{ email_address }}"
