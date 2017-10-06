@@ -8,8 +8,7 @@
     - sftp_users:
       - name: peter
         password: "$1$salty$li5TXAa2G6oxHTDkqx3Dz/" # passpass
-        shell: False
         sftp_directories:
-        - directory_only_for_peter1
+        - license
   roles:
     - sftp_config

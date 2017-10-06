@@ -1,17 +1,25 @@
 #
+- name: find uid
+  shell: ldapsearch -H {{ server_uri }} -D {{ bind_dn }} -b {{ base_dn }} -w {{ bind_pw }} | awk '/uidNumber: / {print $2}' | sort | tail -n 1
+  register: uidNumber
+
 - name: add a user
   ldap_entry:
     dn: uid={{ user_name }},ou=users,dc=orangehrm,dc=com
     objectClass:
       - inetOrgPerson
+      - posixAccount
     attributes:
-      description: An LDAP administrator
-      userPassword: "admin"
+      description: An sftp user
+      userPassword: "{{ usr_pwd }}"
       sn: "{{ surname }}"
       cn: "{{ user_name }}"
-    server_uri: ldap://10.5.0.22
-    bind_dn: cn=admin,dc=orangehrm,dc=com
-    bind_pw: "admin"
+      gidNumber: "{{ gid }}"
+      homeDirectory: "/home/{{ user_name }}"
+      uidNumber: "{{ uidNumber.stdout}}"
+    server_uri: "{{ server_uri }}"
+    bind_dn: "{{ bind_dn }}"
+    bind_pw: "{{ bind_pw }}"
 
 #- name: add a user
 #  ldap_attr:
