@@ -1,12 +1,12 @@
 ---
 - name: SFTP-Server | Create sftp user group
-  group:
+  group: >
     name: "{{ sftp_group_name }}"
     state: present
 
 # Necessary for chrooting of SFTP users.
 - name: SFTP-Server | Alter sftp subsystem entry
-  lineinfile:
+  lineinfile: >
     dest: /etc/ssh/sshd_config
     regexp: '^Subsystem(\s+)sftp'
     line: "Subsystem sftp internal-sftp -f AUTH -l VERBOSE"

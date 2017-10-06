@@ -1,8 +1,8 @@
 ---
 - name: test-playbook | Test sftp-server role
   hosts: phantom
-#  become: true
-#  become_method: sudo
+  become: true
+  become_method: sudo
 #  become_user: thulana
   vars:
     - sftp_users:
