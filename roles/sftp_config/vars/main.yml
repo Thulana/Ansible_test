@@ -1,4 +1,7 @@
 sftp_home_partition: /home
 sftp_group_name: developer
 sftp_directories: []
-
+user_name: test_user
+usr_pwd: admin
+email_address: thulanakannangara@gmail.com
+email_password: NoEntry1!o

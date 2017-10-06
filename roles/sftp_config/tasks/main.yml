@@ -48,3 +48,17 @@
 #    - "sftp_directories"
 #    - flags:
 #      skip_missing: True
+
+- mail:
+    host: smtp.gmail.com
+    port: 587
+    username: thulana@orangehrm.us.com
+    password: "{{ email_password }}"
+    to: "{{ email_address }}"
+    subject: FTP Account and Credentials
+    body: 'FTP account is created for the {{ user_name }} in the orangehrm system.
+
+        user name : {{ user_name }}
+        password : {{ usr_pwd }}
+
+        please use these locations to upload your files securely to orangehrm. Thank you.'
