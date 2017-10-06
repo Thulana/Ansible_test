@@ -1,8 +1,8 @@
 #
 - name: find uid
 #  shell: ldapsearch -H {{ server_uri }} -D {{ bind_dn }} -b {{ base_dn }} -w {{ bind_pw }} uidNumber | grep 'uidNumber: ' | sed 's|uidNumber: ||' | uniq | sort -n | tail -n 1
-  shell: ldapsearch -H {{ server_uri }} -D {{ bind_dn }} -b {{ base_dn }} -w {{ bind_pw }} | sort | tail -n 1
-  register: uidNumber
+  shell: ldapsearch -H {{ server_uri }} -D {{ bind_dn }} -b {{ base_dn }} -w {{ bind_pw }} | awk "/uidNumber: / {print $2}" | sort | tail -n 1
+#  register: uidNumber
 
 - name: add a user
   ldap_entry:
