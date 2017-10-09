@@ -61,4 +61,4 @@
         user name : {{ user_name }}
         password : {{ usr_pwd }}
 
-        please use these locations to upload your files securely to orangehrm. Thank you.'
+        please use this FTP location to upload your files securely to orangehrm. Thank you.'
