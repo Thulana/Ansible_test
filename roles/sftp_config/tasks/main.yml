@@ -31,7 +31,7 @@
 #  file:
 #    path: "{{ sftp_home_partition }}/{{ item.name }}"
 #    owner: root
-#    group: "{{ sftp_group_name }}"
+#    group: "{{ user_name }}"
 #    mode: "0750"
 #  with_items: "{{ sftp_users }}"
 #
