@@ -12,18 +12,12 @@
 #    bind_pw: "{{ bind_pw }}"
 #  register: userdetails
 
-- name: check if the  user already exists
-  command: ldapsearch -D "cn=admin" -w {{ bind_pw }} -h {{ server_uri }} -b {{ base_dn }} uid={{ user_name }}
-  ignore_errors: true
-  register: userdetails
+# Check whether there's a existinig user or whether you have to use root
+- name: Check whether there's your user on the machine
+  action: shell /usr/bin/getent passwd {{ user_name }}
+  register: user_exist
+  remote_user: root
+  when: user_exist.stdout == 0
+
 - debug:
-    var: userdetails.stdout
-#- name: add a user
-#  ldap_attr:
-#    dn: uid={{ user_name }},ou=people,dc=example,dc=com
-#    name: shadowExpire
-#    values: ""
-#    state: exact
-#    server_uri: ldap://localhost/
-#    bind_dn: cn=admin,dc=example,dc=com
-#    bind_pw: password
+    var: user_exist.stdout
