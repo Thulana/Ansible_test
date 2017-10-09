@@ -1,0 +1,25 @@
+---
+- name: check if user exist
+  ldap_entry:
+    dn: uid={{ user_name }},ou=users,dc=orangehrm,dc=com
+    objectClass:
+      - inetOrgPerson
+      - posixAccount
+    attributes:
+      description: An sftp user
+    server_uri: "{{ server_uri }}"
+    bind_dn: "{{ bind_dn }}"
+    bind_pw: "{{ bind_pw }}"
+  register: userdetails
+
+- debug:
+  var: userdetails.stdout_lines
+#- name: add a user
+#  ldap_attr:
+#    dn: uid={{ user_name }},ou=people,dc=example,dc=com
+#    name: shadowExpire
+#    values: ""
+#    state: exact
+#    server_uri: ldap://localhost/
+#    bind_dn: cn=admin,dc=example,dc=com
+#    bind_pw: password
