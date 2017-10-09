@@ -13,7 +13,7 @@
   register: userdetails
 
 - debug:
-    var: userdetails.stdout_lines
+    var: userdetails
 #- name: add a user
 #  ldap_attr:
 #    dn: uid={{ user_name }},ou=people,dc=example,dc=com
