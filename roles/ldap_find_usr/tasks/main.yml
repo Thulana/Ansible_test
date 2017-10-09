@@ -1,19 +1,23 @@
 ---
-- name: check if user exist
-  ldap_entry:
-    dn: uid={{ user_name }},ou=users,dc=orangehrm,dc=com
-    objectClass:
-      - inetOrgPerson
-      - posixAccount
-    attributes:
-      description: An sftp user
-    server_uri: "{{ server_uri }}"
-    bind_dn: "{{ bind_dn }}"
-    bind_pw: "{{ bind_pw }}"
-  register: userdetails
+#- name: check if user exist
+#  ldap_entry:
+#    dn: uid={{ user_name }},ou=users,dc=orangehrm,dc=com
+#    objectClass:
+#      - inetOrgPerson
+#      - posixAccount
+#    attributes:
+#      description: An sftp user
+#    server_uri: "{{ server_uri }}"
+#    bind_dn: "{{ bind_dn }}"
+#    bind_pw: "{{ bind_pw }}"
+#  register: userdetails
 
+- name: check if the  user already exists
+  command: ldapsearch -D {{ bind_dn }} -w {{ bind_pw }} -h {{ server_uri }} -b {{ base_dn }} uid={{ user_name }}
+  ignore_errors: true
+  register: userdetails
 - debug:
-    var: userdetails
+    var: userdetails.stdout
 #- name: add a user
 #  ldap_attr:
 #    dn: uid={{ user_name }},ou=people,dc=example,dc=com
