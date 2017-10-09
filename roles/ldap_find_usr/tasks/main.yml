@@ -21,5 +21,29 @@
   ignore_errors: true
   #when: user_exist.stdout == 0
 
+- name: find uid
+#  ldapsearch -H {{ server_uri }} -D {{ bind_dn }} -b {{ base_dn }} -w {{ bind_pw }} | awk '/uidNumber: / {print $2}' | sort | tail -n 1
+  shell: expr $( cat /etc/passwd |cut -d ":" -f 3 |sort -n | tail -n 1) + 1
+  register: uidNumber
+  when: user_exist.stdout != ""
+
+- name: add a user
+  ldap_entry:
+    dn: uid={{ user_name }},ou=users,dc=orangehrm,dc=com
+    objectClass:
+      - inetOrgPerson
+      - posixAccount
+    attributes:
+      description: An sftp user
+      userPassword: "{{ usr_pwd }}"
+      sn: "{{ surname }}"
+      cn: "{{ user_name }}"
+      gidNumber: "{{ gid }}"
+      homeDirectory: "/home/{{ user_name }}"
+      uidNumber: "{{ uidNumber.stdout}}"
+    server_uri: "{{ server_uri }}"
+    bind_dn: "{{ bind_dn }}"
+    bind_pw: "{{ bind_pw }}"
+  when: user_exist.stdout != ""
 - debug:
     var: user_exist.stdout
