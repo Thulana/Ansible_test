@@ -13,11 +13,12 @@
 #  register: userdetails
 
 # Check whether there's a existinig user or whether you have to use root
-- name: Check whether there's your user on the machine
+
+- name: Check whether user exist
   action: shell /usr/bin/getent passwd {{ user_name }}
   register: user_exist
   remote_user: root
-  when: user_exist.stdout == 0
+  #when: user_exist.stdout == 0
 
 - debug:
     var: user_exist.stdout
