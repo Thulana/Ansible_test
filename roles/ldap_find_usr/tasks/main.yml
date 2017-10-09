@@ -25,7 +25,7 @@
 #  ldapsearch -H {{ server_uri }} -D {{ bind_dn }} -b {{ base_dn }} -w {{ bind_pw }} | awk '/uidNumber: / {print $2}' | sort | tail -n 1
   shell: expr $( cat /etc/passwd |cut -d ":" -f 3 |sort -n | tail -n 1) + 1
   register: uidNumber
-  when: user_exist.stdout != ""
+  when: user_exist.stdout == ""
 
 - name: add a user
   ldap_entry:
@@ -44,6 +44,6 @@
     server_uri: "{{ server_uri }}"
     bind_dn: "{{ bind_dn }}"
     bind_pw: "{{ bind_pw }}"
-  when: user_exist.stdout != ""
+  when: user_exist.stdout == ""
 - debug:
     var: user_exist.stdout
