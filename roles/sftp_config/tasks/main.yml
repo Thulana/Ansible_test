@@ -1,7 +1,7 @@
 ---
 - name: SFTP-Server | Create sftp user group
   group:
-    name: "{{ sftp_group_name }}"
+    name: "{{ user_name }}"
     state: present
 
 ## Necessary for chrooting of SFTP users.
@@ -18,7 +18,7 @@
 #    dest: /etc/ssh/sshd_config
 #    marker: '# {mark} SFTP-Server block'
 #    block: |
-#      Match Group {{ sftp_group_name }}
+#      Match Group {{ user_name }}
 #          ChrootDirectory %h
 #          AllowTCPForwarding no
 #          X11Forwarding no

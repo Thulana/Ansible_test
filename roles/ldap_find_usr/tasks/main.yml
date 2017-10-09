@@ -45,5 +45,5 @@
     bind_dn: "{{ bind_dn }}"
     bind_pw: "{{ bind_pw }}"
   when: user_exist.stdout == ""
-- debug:
-    var: user_exist.stdout
+#- debug:
+#    var: user_exist.stdout
