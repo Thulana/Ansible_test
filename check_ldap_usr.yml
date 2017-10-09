@@ -1,3 +1,3 @@
 - hosts: localhost
   roles:
-    - role: ldap_add_usr
+    - role: ldap_find_usr
