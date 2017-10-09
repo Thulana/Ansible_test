@@ -18,6 +18,7 @@
   action: shell /usr/bin/getent passwd {{ user_name }}
   register: user_exist
   remote_user: root
+  ignore_errors: true
   #when: user_exist.stdout == 0
 
 - debug:
