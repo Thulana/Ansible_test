@@ -13,7 +13,7 @@
 #  register: userdetails
 
 - name: check if the  user already exists
-  command: ldapsearch -D {{ bind_dn }} -w {{ bind_pw }} -h {{ server_uri }} -b {{ base_dn }} uid={{ user_name }}
+  command: ldapsearch -D "cn=admin" -w {{ bind_pw }} -h {{ server_uri }} -b {{ base_dn }} uid={{ user_name }}
   ignore_errors: true
   register: userdetails
 - debug:
