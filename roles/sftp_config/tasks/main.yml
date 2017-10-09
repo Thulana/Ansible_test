@@ -57,8 +57,11 @@
     to: "{{ email_address }}"
     subject: FTP Account and Credentials
     body: 'FTP account is created for the {{ user_name }} in the orangehrm system.
-
+        <br>
         user name : {{ user_name }}
+        <br>
         password : {{ usr_pwd }}
-
-        please use this FTP location to upload your files securely to orangehrm. Thank you.'
+        <br>
+        please use this FTP location to upload your files securely to orangehrm.
+        <br>
+        Thank you.'
